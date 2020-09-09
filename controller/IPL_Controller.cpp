@@ -14,5 +14,7 @@ int main() {
 
     vector<IPLMostRunsCSV> batsmanList =  iplService.loadData(MOST_RUNS_FILE_PATH);
     
+    iplIO.displayTopAvgBatsman(iplService.getBatsmanWithTopBattingAverage(batsmanList));
+
     return 0;
 }

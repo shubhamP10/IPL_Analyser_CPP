@@ -6,9 +6,10 @@
 using namespace std;
 
 class CSV { 
+    vector<string> split(const string& line, char delimiter);
+
     public:
         vector<vector<string>> read_file(string file_name);
-        vector<string> split(const string& line, char delimiter);
         void write_data(vector<string> header, string file_name, vector<vector<string>> data);
 };
 
