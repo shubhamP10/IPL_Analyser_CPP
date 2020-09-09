@@ -5,12 +5,15 @@
 
 using namespace std;
 
+
+
 class IPLService {
     vector<vector<string>> readCSVData(string fileName);
 
     public:
+        enum SortBy {AVG = 1, SR = 2};
         vector<IPLMostRunsCSV> loadData(string fileName);
-        IPLMostRunsCSV getBatsmanWithTopBattingAverage(vector<IPLMostRunsCSV> batsmanList);
+        IPLMostRunsCSV getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
 };
 
 vector<vector<string>> IPLService::readCSVData(string fileName) {
@@ -40,14 +43,24 @@ vector<IPLMostRunsCSV> IPLService::loadData(string fileName) {
     return batsmanList;
 }
 
-IPLMostRunsCSV IPLService::getBatsmanWithTopBattingAverage(vector<IPLMostRunsCSV> batsmanList) {
+IPLMostRunsCSV IPLService::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
     IPLMostRunsCSV topAvgBatsman;
 
     for(int i = 0; i < batsmanList.size() - 1; i++) {
         for(int j = i + 1; j < batsmanList.size(); j++) {
-            if(batsmanList[i].average < batsmanList[j].average) {
-                swap(batsmanList[i], batsmanList[j]);
+            switch(sortBy) {
+                case AVG :
+                    if(batsmanList[i].average < batsmanList[j].average) {
+                        swap(batsmanList[i], batsmanList[j]);
+                    }
+                    break;
+                case SR : 
+                    if(batsmanList[i].strikeRate < batsmanList[j].strikeRate) {
+                        swap(batsmanList[i], batsmanList[j]);
+                    }
+                    break;
             }
+            
         }
     }
 

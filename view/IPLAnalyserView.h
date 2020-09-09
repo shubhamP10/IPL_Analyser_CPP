@@ -11,6 +11,7 @@ private:
 
     void displayWelcomeMessage();
     void displayTopAvgBatsman(IPLMostRunsCSV topBatsman);
+    void displayTopSRBatsman(IPLMostRunsCSV topBatsman);
 };
 
 void IPLAnalyserView::displayWelcomeMessage() {
@@ -18,6 +19,11 @@ void IPLAnalyserView::displayWelcomeMessage() {
 }
 
 void IPLAnalyserView::displayTopAvgBatsman(IPLMostRunsCSV topBatsman) {
-    cout << "\nBatsman With Top Batting Average in IPL 2019" << endl << "Name: " << topBatsman.playerName << endl
+    cout << "\nBatsman With Top Batting Average Rate in IPL 2019" << endl << "Name: " << topBatsman.playerName << endl
             << "Average : " << topBatsman.average << endl;
+}
+
+void IPLAnalyserView::displayTopSRBatsman(IPLMostRunsCSV topBatsman) {
+    cout << "\nBatsman With Top Batting Strike Rate in IPL 2019" << endl << "Name: " << topBatsman.playerName << endl
+            << "Strike Rate : " << topBatsman.strikeRate << endl;
 }

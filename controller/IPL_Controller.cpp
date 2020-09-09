@@ -11,10 +11,10 @@ int main() {
     IPLService iplService;
 
     iplIO.displayWelcomeMessage();
+    vector<IPLMostRunsCSV> batsmanList =  iplService.loadData(MOST_RUNS_FILE_PATH); 
 
-    vector<IPLMostRunsCSV> batsmanList =  iplService.loadData(MOST_RUNS_FILE_PATH);
-    
-    iplIO.displayTopAvgBatsman(iplService.getBatsmanWithTopBattingAverage(batsmanList));
+    iplIO.displayTopAvgBatsman(iplService.getBatsmanBy(batsmanList, iplService.AVG));
+    iplIO.displayTopSRBatsman(iplService.getBatsmanBy(batsmanList, iplService.SR));
 
     return 0;
 }
