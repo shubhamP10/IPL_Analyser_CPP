@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
@@ -5,17 +6,17 @@ using namespace std;
 class IPLMostRunsCSV {
     public:
         string playerName, highestScore;
-        int matches, innings, notOuts, runs, hundreds, fifties, fours, sixes;
+        int runs, hundreds, fifties, fours, sixes;
         double average, strikeRate;
 
         IPLMostRunsCSV() { }
 
-        IPLMostRunsCSV(string playerName, string highestScore, int matches, int innings);
+        IPLMostRunsCSV(string playerName, string highestScore, double average, double strikeRate);
 };
 
-IPLMostRunsCSV::IPLMostRunsCSV(string playerName, string highestScore, int matches, int innings) {
+IPLMostRunsCSV::IPLMostRunsCSV(string playerName, string highestScore, double average, double strikeRate) {
     this->playerName = playerName;
     this->highestScore = highestScore;
-    this->matches = matches;
-    this->innings = innings;
+    this->average = average;
+    this->strikeRate = strikeRate;
 }
