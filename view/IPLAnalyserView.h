@@ -33,34 +33,59 @@ void IPLAnalyserViewImpl::displayWelcomeMessage() {
 }
 
 void IPLAnalyserViewImpl::displayTopAvgBatsman(vector<IPLMostRunsCSV> topBatsman) {
-    cout << "\nBatsman With Top Batting Average in IPL 2019" << endl << "Name: " << topBatsman[0].playerName << endl
-            << "Average : " << topBatsman[0].average << endl;
+    cout << "=======================================================";
+    cout << "\nBatsman With Top Batting Average in IPL 2019" << endl;
+
+    for(int i = 0; i < 3; i++) {
+        cout  << "\nName: " << topBatsman[i].playerName << endl << "Average : " << topBatsman[i].average << endl;
+    }
+    cout << "=======================================================\n";
 }
 
 void IPLAnalyserViewImpl::displayTopSRBatsman(vector<IPLMostRunsCSV> topBatsman) {
-    cout << "\nBatsman With Top Batting Strike Rate in IPL 2019" << endl << "Name: " << topBatsman[0].playerName << endl
-            << "Strike Rate : " << topBatsman[0].strikeRate << endl;
+    cout << "=======================================================";
+    cout << "\nBatsman With Top Batting Strike Rate in IPL 2019" << endl; 
+    for(int i = 0; i < 3; i++) {
+        cout << "\nName: " << topBatsman[i].playerName << endl << "Strike Rate : " << topBatsman[i].strikeRate << endl;
+    }
+    cout << "=======================================================\n";
 }
 
 void IPLAnalyserViewImpl::displayBatsmanWhoHitsMaxSixAndFours(vector<IPLMostRunsCSV> topBatsman) {
-    cout << "\nBatsman Who Hits Max Fours And Sixes in IPL 2019" << endl << "Name: " << topBatsman[0].playerName << endl
-            << "Sixes : " << topBatsman[0].sixes << endl << "Fours : " << topBatsman[0].fours << endl;
+    cout << "=======================================================";
+    cout << "\nBatsman Who Hits Max Fours And Sixes in IPL 2019" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout  << "\nName: " << topBatsman[i].playerName << endl << "Sixes : " << topBatsman[i].sixes << endl << "Fours : " << topBatsman[i].fours << endl;
+    }
+    cout << "=======================================================\n";
 }
 
 void IPLAnalyserViewImpl::displayBatsmanWithSRAnd6sAnd4s(vector<IPLMostRunsCSV> topBatsman) {
-    cout << "\nBatsman Who Hits Max Fours And Sixes With Best Striking Rate in IPL 2019" << endl 
-            << "Name: " << topBatsman[0].playerName << endl << "Sixes : " << topBatsman[0].sixes << endl 
-            << "Fours : " << topBatsman[0].fours << endl << "Strike Rate : " << topBatsman[0].strikeRate << endl;
+    cout << "=======================================================";
+    cout << "\nBatsman Who Hits Max Fours And Sixes With Best Striking Rate in IPL 2019" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout << "\nName: " << topBatsman[i].playerName << endl << "Sixes : " << topBatsman[i].sixes << endl 
+            << "Fours : " << topBatsman[i].fours << endl << "Strike Rate : " << topBatsman[i].strikeRate << endl;
+    }
+    cout << "=======================================================\n";
 }
 
 void IPLAnalyserViewImpl::displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman) {
-    cout << "\nBatsman Who Best Average And Best Striking Rate in IPL 2019" << endl 
-            << "Name: " << topBatsman[0].playerName << endl
-            << "Average : " << topBatsman[0].average << endl << "Strike Rate : " << topBatsman[0].strikeRate << endl;
+    cout << "=======================================================";
+    cout << "\nBatsman Who Best Average And Best Striking Rate in IPL 2019" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout << "\nName: " << topBatsman[i].playerName << endl << "Average : " 
+                << topBatsman[i].average << endl << "Strike Rate : " << topBatsman[i].strikeRate << endl;
+    }
+    cout << "=======================================================\n";
 }
 
 void IPLAnalyserViewImpl::displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman) {
-    cout << "\nBatsman Who Hits Maximum Runs And Having Best Batting Average in IPL 2019" << endl 
-            << "Name: " << topBatsman[0].playerName << endl
-            << "Average : " << topBatsman[0].average << endl << "Runs : " << topBatsman[0].runs << endl;
+    cout << "=======================================================";
+    cout << "\nBatsman Who Hits Maximum Runs And Having Best Batting Average in IPL 2019" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout << "\nName: " << topBatsman[i].playerName << endl << "Average : " 
+            << topBatsman[i].average << endl << "Runs : " << topBatsman[i].runs << endl;
+    }
+    cout << "=======================================================";
 }
