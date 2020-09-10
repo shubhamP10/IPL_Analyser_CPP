@@ -10,7 +10,7 @@ class IPLAnalyser {
     vector<vector<string>> readCSVData(string fileName);
 
     public:
-        enum SortBy {AVG = 1, SR = 2, SIX_AND_FOURS = 3, SR_WITH_6sAND4s = 4};
+        enum SortBy {AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, AVERAGE_WITH_SR};
         vector<IPLMostRunsCSV> loadData(string fileName);
         vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
 };
@@ -63,6 +63,12 @@ vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanL
 
                 case SR_WITH_6sAND4s : 
                     if((batsmanList[i].fours + batsmanList[i].sixes) < (batsmanList[j].fours + batsmanList[j].sixes) && batsmanList[i].strikeRate < batsmanList[j].strikeRate) {
+                        swap(batsmanList[i], batsmanList[j]);
+                    }
+                    break;
+                
+                case AVERAGE_WITH_SR : 
+                    if((batsmanList[i].strikeRate < batsmanList[j].strikeRate) && (batsmanList[i].average < batsmanList[j].average) ) {
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;

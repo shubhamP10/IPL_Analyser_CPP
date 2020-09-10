@@ -37,6 +37,10 @@ class IPL_Controller {
         void displayBatsmanWithSRAnd6sAnd4s() {
             iplIO->displayBatsmanWithSRAnd6sAnd4s(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SR_WITH_6sAND4s));
         }
+
+        void displayBatsmanWithBestAverageAndSR() {
+            iplIO->displayBatsmanWithBestAverageAndSR(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
+        }
 };
 
 int main() {
@@ -51,6 +55,7 @@ int main() {
     controller.displayTopSRBatsmanData();
     controller.displayBatsmanWhoHitsMaxSixAndFours();
     controller.displayBatsmanWithSRAnd6sAnd4s();
+    controller.displayBatsmanWithBestAverageAndSR(); 
 
 
     return 0;
