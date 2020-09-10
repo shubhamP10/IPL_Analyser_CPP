@@ -8,6 +8,7 @@ using namespace std;
 class IPLAnalyserView {
     public :
         virtual void displayWelcomeMessage() = 0;
+        virtual int getUserChoice() = 0;
         virtual void displayTopAvgBatsman(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayTopSRBatsman(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayBatsmanWhoHitsMaxSixAndFours(vector<IPLMostRunsCSV> topBatsman) = 0;
@@ -20,6 +21,7 @@ class IPLAnalyserViewImpl : public IPLAnalyserView {
     public:
         IPLAnalyserViewImpl() {}
         virtual void displayWelcomeMessage();
+        virtual int getUserChoice();
         virtual void displayTopAvgBatsman(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayTopSRBatsman(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayBatsmanWhoHitsMaxSixAndFours(vector<IPLMostRunsCSV> topBatsman);
@@ -29,7 +31,17 @@ class IPLAnalyserViewImpl : public IPLAnalyserView {
 };
 
 void IPLAnalyserViewImpl::displayWelcomeMessage() {
+    system("clear");
     cout << "Welcome To IPL Analyser" << endl;
+}
+
+int IPLAnalyserViewImpl::getUserChoice() {
+    int choice;
+    cout << "1. Best Batting Averages\n2. Best Batting Strike Rates\n3. Maximum 4s And 6s" << endl
+        << "4. Best Strike Rate With 4s and 6s\n5. Best Batting Averages With Strike Rate" << endl
+        << "6. Maximum Runs With Best Average\n Press Other Key To Exit" << endl;
+    cin >> choice;
+    return choice;
 }
 
 void IPLAnalyserViewImpl::displayTopAvgBatsman(vector<IPLMostRunsCSV> topBatsman) {
@@ -87,5 +99,5 @@ void IPLAnalyserViewImpl::displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRuns
         cout << "\nName: " << topBatsman[i].playerName << endl << "Average : " 
             << topBatsman[i].average << endl << "Runs : " << topBatsman[i].runs << endl;
     }
-    cout << "=======================================================";
+    cout << "=======================================================\n";
 }

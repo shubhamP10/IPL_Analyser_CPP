@@ -22,28 +22,35 @@ class IPL_Controller {
             iplIO->displayWelcomeMessage();
         }
 
-        void displayTopAvgBtasmanData() {
-            iplIO->displayTopAvgBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVG));
-        }
+        void createMenu() {
+            int flag = 0;
 
-        void displayTopSRBatsmanData() {
-             iplIO->displayTopSRBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SR));
-        }
+            while(flag == 0) {
+                int choice = iplIO->getUserChoice();
+                switch(choice) {
+                    case 1:
+                        iplIO->displayTopAvgBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVG));
+                        break;
+                    case 2:
+                        iplIO->displayTopSRBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SR));
+                        break;
+                    case 3:
+                        iplIO->displayBatsmanWhoHitsMaxSixAndFours(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SIX_AND_FOURS));
+                        break;
+                    case 4:
+                        iplIO->displayBatsmanWithSRAnd6sAnd4s(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SR_WITH_6sAND4s));
+                        break;
+                    case 5:
+                        iplIO->displayBatsmanWithBestAverageAndSR(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
+                        break;
+                    case 6:
+                        iplIO->displayBatsmanWithMaxRunsAndAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
+                        break;
+                    default :
+                        flag = 1;
+                }
 
-        void displayBatsmanWhoHitsMaxSixAndFours() {
-            iplIO->displayBatsmanWhoHitsMaxSixAndFours(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SIX_AND_FOURS));
-        }
-
-        void displayBatsmanWithSRAnd6sAnd4s() {
-            iplIO->displayBatsmanWithSRAnd6sAnd4s(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SR_WITH_6sAND4s));
-        }
-
-        void displayBatsmanWithBestAverageAndSR() {
-            iplIO->displayBatsmanWithBestAverageAndSR(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
-        }
-
-        void displayBatsmanWithMaxRunsAndAverage() {
-            iplIO->displayBatsmanWithMaxRunsAndAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
+            }
         }
 };
 
@@ -55,12 +62,7 @@ int main() {
     IPL_Controller controller(iplIO, iplAnalyser);
 
     controller.displayWelcomeMessage();
-    controller.displayTopAvgBtasmanData();
-    controller.displayTopSRBatsmanData();
-    controller.displayBatsmanWhoHitsMaxSixAndFours();
-    controller.displayBatsmanWithSRAnd6sAnd4s();
-    controller.displayBatsmanWithBestAverageAndSR();
-    controller.displayBatsmanWithMaxRunsAndAverage(); 
+    controller.createMenu();
 
 
     return 0;
