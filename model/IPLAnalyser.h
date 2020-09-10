@@ -10,9 +10,9 @@ class IPLAnalyser {
     vector<vector<string>> readCSVData(string fileName);
 
     public:
-        enum SortBy {AVG = 1, SR = 2, SIX_AND_FOURS = 3};
+        enum SortBy {AVG = 1, SR = 2, SIX_AND_FOURS = 3, SR_WITH_6sAND4s = 4};
         vector<IPLMostRunsCSV> loadData(string fileName);
-        IPLMostRunsCSV getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
+        vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
 };
 
 vector<vector<string>> IPLAnalyser::readCSVData(string fileName) {
@@ -38,8 +38,7 @@ vector<IPLMostRunsCSV> IPLAnalyser::loadData(string fileName) {
     return batsmanList;
 }
 
-IPLMostRunsCSV IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
-    IPLMostRunsCSV topAvgBatsman;
+vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
 
     for(int i = 0; i < batsmanList.size() - 1; i++) {
         for(int j = i + 1; j < batsmanList.size(); j++) {
@@ -55,13 +54,20 @@ IPLMostRunsCSV IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, Sor
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;
+
                 case SIX_AND_FOURS : 
                     if((batsmanList[i].fours + batsmanList[i].sixes) < (batsmanList[j].fours + batsmanList[j].sixes)) {
+                        swap(batsmanList[i], batsmanList[j]);
+                    }
+                    break;
+
+                case SR_WITH_6sAND4s : 
+                    if((batsmanList[i].fours + batsmanList[i].sixes) < (batsmanList[j].fours + batsmanList[j].sixes) && batsmanList[i].strikeRate < batsmanList[j].strikeRate) {
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;
             }    
         }
     }
-    return batsmanList.at(0);
+    return batsmanList;
 }
