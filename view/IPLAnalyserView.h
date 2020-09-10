@@ -13,6 +13,7 @@ class IPLAnalyserView {
         virtual void displayBatsmanWhoHitsMaxSixAndFours(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayBatsmanWithSRAnd6sAnd4s(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman) = 0;
+        virtual void displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman) = 0;
 };
 
 class IPLAnalyserViewImpl : public IPLAnalyserView {
@@ -24,6 +25,7 @@ class IPLAnalyserViewImpl : public IPLAnalyserView {
         virtual void displayBatsmanWhoHitsMaxSixAndFours(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayBatsmanWithSRAnd6sAnd4s(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman);
+        virtual void displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman);
 };
 
 void IPLAnalyserViewImpl::displayWelcomeMessage() {
@@ -55,4 +57,10 @@ void IPLAnalyserViewImpl::displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsC
     cout << "\nBatsman Who Best Average And Best Striking Rate in IPL 2019" << endl 
             << "Name: " << topBatsman[0].playerName << endl
             << "Average : " << topBatsman[0].average << endl << "Strike Rate : " << topBatsman[0].strikeRate << endl;
+}
+
+void IPLAnalyserViewImpl::displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman) {
+    cout << "\nBatsman Who Hits Maximum Runs And Having Best Batting Average in IPL 2019" << endl 
+            << "Name: " << topBatsman[0].playerName << endl
+            << "Average : " << topBatsman[0].average << endl << "Runs : " << topBatsman[0].runs << endl;
 }
