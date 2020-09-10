@@ -1,13 +1,11 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "../libraries/csv.h"
+#include "../libraries/csv_reader.h"
 
 using namespace std;
 
-
-
-class IPLService {
+class IPLAnalyser {
     vector<vector<string>> readCSVData(string fileName);
 
     public:
@@ -16,12 +14,12 @@ class IPLService {
         IPLMostRunsCSV getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
 };
 
-vector<vector<string>> IPLService::readCSVData(string fileName) {
-    CSV csv;
+vector<vector<string>> IPLAnalyser::readCSVData(string fileName) {
+    CSV_Reader csv;
     return csv.read_file(fileName);
 }
 
-vector<IPLMostRunsCSV> IPLService::loadData(string fileName) {
+vector<IPLMostRunsCSV> IPLAnalyser::loadData(string fileName) {
 
     vector<vector<string>> csvData = readCSVData(fileName);
     vector<IPLMostRunsCSV> batsmanList;
@@ -39,11 +37,10 @@ vector<IPLMostRunsCSV> IPLService::loadData(string fileName) {
 
         batsmanList.push_back(batsman);
     }
-
     return batsmanList;
 }
 
-IPLMostRunsCSV IPLService::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
+IPLMostRunsCSV IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
     IPLMostRunsCSV topAvgBatsman;
 
     for(int i = 0; i < batsmanList.size() - 1; i++) {
@@ -54,15 +51,14 @@ IPLMostRunsCSV IPLService::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, Sort
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;
+                    
                 case SR : 
                     if(batsmanList[i].strikeRate < batsmanList[j].strikeRate) {
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;
-            }
-            
+            }    
         }
     }
-
     return batsmanList.at(0);
 }

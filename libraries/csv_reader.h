@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class CSV { 
+class CSV_Reader { 
     vector<string> split(const string& line, char delimiter);
 
     public:
@@ -13,7 +13,7 @@ class CSV {
         void write_data(vector<string> header, string file_name, vector<vector<string>> data);
 };
 
-vector<string> CSV::split(const string& line, char delimiter) {
+vector<string> CSV_Reader::split(const string& line, char delimiter) {
     vector<string> tokens;
     string token;
     istringstream tokenStream(line);
@@ -24,7 +24,7 @@ vector<string> CSV::split(const string& line, char delimiter) {
     return tokens;
 }
 
-vector<vector<string>> CSV::read_file(string file_name) {
+vector<vector<string>> CSV_Reader::read_file(string file_name) {
     fstream reader;
     reader.open(file_name, ios::in); 
     string line, word;
@@ -44,7 +44,7 @@ vector<vector<string>> CSV::read_file(string file_name) {
     return csv_data;
 }
 
-void CSV::write_data(vector<string> header, string file_name, vector<vector<string>> data) {
+void CSV_Reader::write_data(vector<string> header, string file_name, vector<vector<string>> data) {
     fstream writer;
     writer.open(file_name, ios::out | ios::app);
     
