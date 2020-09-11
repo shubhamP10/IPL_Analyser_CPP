@@ -111,6 +111,11 @@ vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bow
                         swap(bowlerList[i], bowlerList[j]);
                     }
                     break;
+                case SR :
+                    if(bowlerList[i].strikeRate < bowlerList[j].strikeRate) {
+                        swap(bowlerList[i], bowlerList[j]);
+                    }
+                    break;
             }
         }
     }

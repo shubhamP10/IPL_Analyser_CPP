@@ -17,6 +17,7 @@ class IPLAnalyserView {
         virtual void displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayTopBowlingAverages(vector<IPLMostWicketsCSV> topBowler) = 0;
+        virtual void displayTopStrikeRatesOfBowlers(vector<IPLMostWicketsCSV> topBowler) = 0;
 };
 
 class IPLAnalyserViewImpl : public IPLAnalyserView {
@@ -31,6 +32,7 @@ class IPLAnalyserViewImpl : public IPLAnalyserView {
         virtual void displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayTopBowlingAverages(vector<IPLMostWicketsCSV> topBowler);
+        virtual void displayTopStrikeRatesOfBowlers(vector<IPLMostWicketsCSV> topBowler);
 };
 
 void IPLAnalyserViewImpl::displayWelcomeMessage() {
@@ -42,7 +44,7 @@ int IPLAnalyserViewImpl::getUserChoice() {
     int choice;
     cout << "1. Best Batting Averages\n2. Best Batting Strike Rates\n3. Maximum 4s And 6s" << endl
         << "4. Best Strike Rate With 4s and 6s\n5. Best Batting Averages With Strike Rate" << endl
-        << "6. Maximum Runs With Best Average\n7. Top Bowling Averages\n Press Other Key To Exit" << endl;
+        << "6. Maximum Runs With Best Average\n7. Top Bowling Averages\n8. Bowler's Batting Strike Rates\nPress Other Key To Exit" << endl;
     cin >> choice;
     return choice;
 }
@@ -113,6 +115,20 @@ void IPLAnalyserViewImpl::displayTopBowlingAverages(vector<IPLMostWicketsCSV> to
         if(topBowler[i].average != 0 && count < 3) {
             cout << "\nName: " << topBowler[i].playerName << endl << "Average : " 
             << topBowler[i].average << endl;
+            count++;
+        }
+    }
+    cout << "=======================================================\n";
+}
+
+void IPLAnalyserViewImpl::displayTopStrikeRatesOfBowlers(vector<IPLMostWicketsCSV> topBowler) {
+    cout << "=======================================================";
+    cout << "\nTop Batting Strike Rates of Bowlers in IPL 2019" << endl;
+    int count = 0;
+    for(int i = 0; i < topBowler.size(); i++) {
+        if(topBowler[i].average != 0 && count < 3) {
+            cout << "\nName: " << topBowler[i].playerName << endl << "Strike Rate : " 
+            << topBowler[i].strikeRate << endl;
             count++;
         }
     }

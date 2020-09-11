@@ -52,6 +52,9 @@ public:
                 case 7:
                     iplIO->displayTopBowlingAverages(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.AVG));
                     break;
+                case 8:
+                    iplIO->displayTopStrikeRatesOfBowlers(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR));
+                    break;
                 default :
                     flag = 1;
             }
