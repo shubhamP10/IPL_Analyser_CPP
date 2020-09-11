@@ -58,6 +58,9 @@ public:
                 case 9:
                     iplIO->displayBestBowlingEconomy(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.ECONOMY));
                     break;
+                case 10:
+                    iplIO->display5wAnd4wWithBestStrikeRate(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR_WITH_5w_AND_4w));
+                    break;
                 default :
                     flag = 1;
             }

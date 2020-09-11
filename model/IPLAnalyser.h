@@ -11,7 +11,11 @@ class IPLAnalyser {
     vector<vector<string>> readCSVData(string fileName);
 
 public:
-    enum SortBy {AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY};
+    enum SortBy {
+        AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, 
+        AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY,
+        SR_WITH_5w_AND_4w
+        };
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
     vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
@@ -103,6 +107,7 @@ vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanL
 }
 
 vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bowlerList, SortBy sortBy) {
+    
     for(int i = 0; i < bowlerList.size() - 1; i++) {
         for(int j = i + 1; j < bowlerList.size(); j++) {
             switch(sortBy) {
@@ -112,13 +117,19 @@ vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bow
                     }
                     break;
                 case SR :
-                    if(bowlerList[i].strikeRate < bowlerList[j].strikeRate) {
+                    if(bowlerList[i].strikeRate > bowlerList[j].strikeRate) {
                         swap(bowlerList[i], bowlerList[j]);
                     }
                     break;
                 case ECONOMY :
                     if(bowlerList[i].economy > bowlerList[j].economy) {
                         swap(bowlerList[i], bowlerList[j]);
+                    }
+                    break;
+                case SR_WITH_5w_AND_4w :
+                    if((bowlerList[i].strikeRate > bowlerList[j].strikeRate)) {
+                        if((bowlerList[i].fiveWickets + bowlerList[i].fourWickets) < (bowlerList[j].fiveWickets + bowlerList[j].fourWickets))
+                            swap(bowlerList[i], bowlerList[j]);
                     }
                     break;
             }
