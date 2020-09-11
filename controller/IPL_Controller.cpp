@@ -47,7 +47,7 @@ public:
                     iplIO->displayBatsmanWithBestAverageAndSR(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
                     break;
                 case 6:
-                    iplIO->displayBatsmanWithMaxRunsAndAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
+                    iplIO->displayBatsmanWithMaxRunsAndAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.MAX_RUNS_WITH_AVERAGE));
                     break;
                 case 7:
                     iplIO->displayTopBowlingAverages(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.AVG));
@@ -62,10 +62,10 @@ public:
                     iplIO->display5wAnd4wWithBestStrikeRate(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR_WITH_5w_AND_4w));
                     break;
                 case 11:
-                    iplIO->displayBestBowlingAverageWithSR(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR_WITH_5w_AND_4w));
+                    iplIO->displayBestBowlingAverageWithSR(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.BOWLING_AVG_WITH_SR));
                     break;
                 case 12:
-                    iplIO->displayMaxWicketsWithAverage(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR_WITH_5w_AND_4w));
+                    iplIO->displayMaxWicketsWithAverage(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.MAX_WICKETS_WITH_AVG));
                     break;
                 default :
                     flag = 1;
