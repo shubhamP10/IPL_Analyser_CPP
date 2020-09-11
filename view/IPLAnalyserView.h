@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "../model/IPLMostRunsCSV.h"
+#include "../model/IPLMostWicketsCSV.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class IPLAnalyserView {
         virtual void displayBatsmanWithSRAnd6sAnd4s(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman) = 0;
         virtual void displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman) = 0;
+        virtual void displayTopBowlingAverages(vector<IPLMostWicketsCSV> topBowler) = 0;
 };
 
 class IPLAnalyserViewImpl : public IPLAnalyserView {
@@ -28,6 +30,7 @@ class IPLAnalyserViewImpl : public IPLAnalyserView {
         virtual void displayBatsmanWithSRAnd6sAnd4s(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayBatsmanWithBestAverageAndSR(vector<IPLMostRunsCSV> topBatsman);
         virtual void displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRunsCSV> topBatsman);
+        virtual void displayTopBowlingAverages(vector<IPLMostWicketsCSV> topBowler);
 };
 
 void IPLAnalyserViewImpl::displayWelcomeMessage() {
@@ -39,7 +42,7 @@ int IPLAnalyserViewImpl::getUserChoice() {
     int choice;
     cout << "1. Best Batting Averages\n2. Best Batting Strike Rates\n3. Maximum 4s And 6s" << endl
         << "4. Best Strike Rate With 4s and 6s\n5. Best Batting Averages With Strike Rate" << endl
-        << "6. Maximum Runs With Best Average\n Press Other Key To Exit" << endl;
+        << "6. Maximum Runs With Best Average\n7. Top Bowling Averages\n Press Other Key To Exit" << endl;
     cin >> choice;
     return choice;
 }
@@ -98,6 +101,20 @@ void IPLAnalyserViewImpl::displayBatsmanWithMaxRunsAndAverage(vector<IPLMostRuns
     for(int i = 0; i < 3; i++) {
         cout << "\nName: " << topBatsman[i].playerName << endl << "Average : " 
             << topBatsman[i].average << endl << "Runs : " << topBatsman[i].runs << endl;
+    }
+    cout << "=======================================================\n";
+}
+
+void IPLAnalyserViewImpl::displayTopBowlingAverages(vector<IPLMostWicketsCSV> topBowler) {
+    cout << "=======================================================";
+    cout << "\nTop Bowling Averages in IPL 2019" << endl;
+    int count = 0;
+    for(int i = 0; i < topBowler.size(); i++) {
+        if(topBowler[i].average != 0 && count < 3) {
+            cout << "\nName: " << topBowler[i].playerName << endl << "Average : " 
+            << topBowler[i].average << endl;
+            count++;
+        }
     }
     cout << "=======================================================\n";
 }

@@ -49,6 +49,9 @@ public:
                 case 6:
                     iplIO->displayBatsmanWithMaxRunsAndAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE_WITH_SR));
                     break;
+                case 7:
+                    iplIO->displayTopBowlingAverages(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.AVG));
+                    break;
                 default :
                     flag = 1;
             }

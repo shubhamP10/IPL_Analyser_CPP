@@ -15,6 +15,7 @@ public:
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
     vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
+    vector<IPLMostWicketsCSV> getBowlerBy(vector<IPLMostWicketsCSV> bowlerList, SortBy sortBy);
 };
 
 vector<vector<string>> IPLAnalyser::readCSVData(string fileName) {
@@ -48,14 +49,13 @@ vector<IPLMostWicketsCSV> IPLAnalyser::loadBowlerData(string fileName) {
         bowler.runs = stoi(csvData.at(row).at(5));
         bowler.fourWickets = stoi(csvData.at(row).at(11));
         bowler.fiveWickets = stoi(csvData.at(row).at(12));
-        bowler.strikeRate = stoi(csvData.at(row).at(10));
-        bowler.average = stoi(csvData.at(row).at(8));
+        bowler.strikeRate = stod(csvData.at(row).at(10));
+        bowler.average = stod(csvData.at(row).at(8));
 
         bowlerList.push_back(bowler);
     }
     return bowlerList;
 }
-
 
 vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
 
@@ -100,4 +100,19 @@ vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanL
         }
     }
     return batsmanList;
+}
+
+vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bowlerList, SortBy sortBy) {
+    for(int i = 0; i < bowlerList.size() - 1; i++) {
+        for(int j = i + 1; j < bowlerList.size(); j++) {
+            switch(sortBy) {
+                case AVG :
+                    if(bowlerList[i].average > bowlerList[j].average) {
+                        swap(bowlerList[i], bowlerList[j]);
+                    }
+                    break;
+            }
+        }
+    }
+    return bowlerList;               
 }
