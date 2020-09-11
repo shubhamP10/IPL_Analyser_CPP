@@ -14,12 +14,16 @@ public:
     enum SortBy {
         AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, 
         AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY,
-        SR_WITH_5w_AND_4w, BOWLING_AVG_WITH_SR, MAX_WICKETS_WITH_AVG
+        SR_WITH_5w_AND_4w, BOWLING_AVG_WITH_SR, MAX_WICKETS_WITH_AVG, BATTING_BOWLING_AVERAGE
         };
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
     vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
     vector<IPLMostWicketsCSV> getBowlerBy(vector<IPLMostWicketsCSV> bowlerList, SortBy sortBy);
+    vector<All_Rounder> loadAllRounderData(vector<IPLMostRunsCSV> batsmanList, vector<IPLMostWicketsCSV> bowlerList);
+    vector<All_Rounder> getAllRounderBy(vector<All_Rounder> allRounderList, SortBy sortBy);
+
+    
 };
 
 vector<vector<string>> IPLAnalyser::readCSVData(string fileName) {
@@ -148,4 +152,41 @@ vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bow
         }
     }
     return bowlerList;               
+}
+
+vector<All_Rounder> IPLAnalyser::loadAllRounderData(vector<IPLMostRunsCSV> batsmanList, vector<IPLMostWicketsCSV> bowlerList) {
+    vector<All_Rounder> allRounderList;
+    int count = 0;
+    for(int i = 0; i < batsmanList.size(); i++) {
+        for(int j = 0; j < bowlerList.size(); j++) {
+            if(bowlerList[j].playerName == batsmanList[i].playerName) {
+                All_Rounder allRounder;
+                allRounder.playerName = bowlerList[j].playerName;
+                allRounder.runs = bowlerList[j].runs;
+                allRounder.wickets = bowlerList[j].wickets;
+                allRounder.bowlingAverage = bowlerList[j].average;
+                allRounder.battingAverage = batsmanList[j].average;
+                allRounderList.push_back(allRounder);
+                count++;
+            }
+        }
+    }
+
+    return allRounderList;
+}
+
+vector<All_Rounder> IPLAnalyser::getAllRounderBy(vector<All_Rounder> allRounderList, SortBy sortBy) {
+    for(int i = 0; i < allRounderList.size() - 1; i++) {
+        for(int j = i + 1; j < allRounderList.size(); j++) {
+            switch(sortBy) {
+                case BATTING_BOWLING_AVERAGE :
+                    if(allRounderList[i].battingAverage < allRounderList[j].battingAverage) {
+                        if(allRounderList[i].bowlingAverage > allRounderList[j].bowlingAverage)
+                        swap(allRounderList[i], allRounderList[j]);
+                    }
+                    break;
+            }
+        }
+    }
+    return allRounderList;
 }

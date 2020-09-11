@@ -12,13 +12,16 @@ class IPL_Controller {
     IPLAnalyser iplAnalyser;
     vector<IPLMostRunsCSV> batsmanList;
     vector<IPLMostWicketsCSV> bowlerList;
+    
 
 public:
+    vector<All_Rounder> allRounderList;
     IPL_Controller(IPLAnalyserView *view, IPLAnalyser model) {
         iplIO = view;
         iplAnalyser = model;
         batsmanList = iplAnalyser.loadBatsmanData(MOST_RUNS_FILE_PATH);
         bowlerList = iplAnalyser.loadBowlerData(MOST_WICKETS_FILE_PATH);
+        allRounderList = iplAnalyser.loadAllRounderData(batsmanList, bowlerList);
     }
 
     void displayWelcomeMessage() {
@@ -66,6 +69,9 @@ public:
                     break;
                 case 12:
                     iplIO->displayMaxWicketsWithAverage(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.MAX_WICKETS_WITH_AVG));
+                    break;
+                case 13:
+                    iplIO->displayBestBowlingAndBattingAverage(iplAnalyser.getAllRounderBy(allRounderList, iplAnalyser.BATTING_BOWLING_AVERAGE));
                     break;
                 default :
                     flag = 1;
