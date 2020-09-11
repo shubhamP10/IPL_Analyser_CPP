@@ -14,7 +14,7 @@ public:
     enum SortBy {
         AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, 
         AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY,
-        SR_WITH_5w_AND_4w
+        SR_WITH_5w_AND_4w, BOWLING_AVG_WITH_SR
         };
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
@@ -129,6 +129,12 @@ vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bow
                 case SR_WITH_5w_AND_4w :
                     if((bowlerList[i].strikeRate > bowlerList[j].strikeRate)) {
                         if((bowlerList[i].fiveWickets + bowlerList[i].fourWickets) < (bowlerList[j].fiveWickets + bowlerList[j].fourWickets))
+                            swap(bowlerList[i], bowlerList[j]);
+                    }
+                    break;
+                case BOWLING_AVG_WITH_SR :
+                    if((bowlerList[i].average > bowlerList[j].average)) {
+                        if(bowlerList[i].strikeRate > bowlerList[j].strikeRate)
                             swap(bowlerList[i], bowlerList[j]);
                     }
                     break;
