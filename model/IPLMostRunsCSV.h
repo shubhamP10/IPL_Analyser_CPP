@@ -4,14 +4,14 @@
 using namespace std;
 
 class IPLMostRunsCSV {
-    public:
-        string playerName, highestScore;
-        int runs, hundreds, fifties, fours, sixes;
-        double average, strikeRate;
+public:
+    string playerName, highestScore;
+    int runs, hundreds, fifties, fours, sixes;
+    double average, strikeRate;
 
-        IPLMostRunsCSV() { }
+    IPLMostRunsCSV() { }
 
-        IPLMostRunsCSV(string playerName, string highestScore, double average, double strikeRate);
+    IPLMostRunsCSV(string playerName, string highestScore, double average, double strikeRate);
 };
 
 IPLMostRunsCSV::IPLMostRunsCSV(string playerName, string highestScore, double average, double strikeRate) {

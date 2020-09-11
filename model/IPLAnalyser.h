@@ -3,16 +3,18 @@
 #include <vector>
 #include "../libraries/csv_reader.h"
 #include "IPLMostRunsCSV.h"
+#include "IPLMostWicketsCSV.h"
 
 using namespace std;
 
 class IPLAnalyser {
     vector<vector<string>> readCSVData(string fileName);
 
-    public:
-        enum SortBy {AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE};
-        vector<IPLMostRunsCSV> loadData(string fileName);
-        vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
+public:
+    enum SortBy {AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE};
+    vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
+    vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
+    vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
 };
 
 vector<vector<string>> IPLAnalyser::readCSVData(string fileName) {
@@ -20,11 +22,10 @@ vector<vector<string>> IPLAnalyser::readCSVData(string fileName) {
     return csv.read_file(fileName);
 }
 
-vector<IPLMostRunsCSV> IPLAnalyser::loadData(string fileName) {
-
+vector<IPLMostRunsCSV> IPLAnalyser::loadBatsmanData(string fileName) {
     vector<vector<string>> csvData = readCSVData(fileName);
     vector<IPLMostRunsCSV> batsmanList;
-
+   
     for(int row = 0; row < csvData.size(); row++) {
         IPLMostRunsCSV batsman(csvData.at(row).at(1), csvData.at(row).at(6), stod(csvData.at(row).at(7)), stod(csvData.at(row).at(9)));
         batsman.runs = stoi(csvData.at(row).at(5));
@@ -37,6 +38,24 @@ vector<IPLMostRunsCSV> IPLAnalyser::loadData(string fileName) {
     }
     return batsmanList;
 }
+
+vector<IPLMostWicketsCSV> IPLAnalyser::loadBowlerData(string fileName) {
+    vector<vector<string>> csvData = readCSVData(fileName);
+    vector<IPLMostWicketsCSV> bowlerList;
+
+    for(int row = 0; row < csvData.size(); row++) {
+        IPLMostWicketsCSV bowler(csvData.at(row).at(1), stoi(csvData.at(row).at(6)), stod(csvData.at(row).at(4)), stod(csvData.at(row).at(9)));
+        bowler.runs = stoi(csvData.at(row).at(5));
+        bowler.fourWickets = stoi(csvData.at(row).at(11));
+        bowler.fiveWickets = stoi(csvData.at(row).at(12));
+        bowler.strikeRate = stoi(csvData.at(row).at(10));
+        bowler.average = stoi(csvData.at(row).at(8));
+
+        bowlerList.push_back(bowler);
+    }
+    return bowlerList;
+}
+
 
 vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy) {
 
