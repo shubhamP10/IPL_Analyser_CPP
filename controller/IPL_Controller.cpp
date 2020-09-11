@@ -64,6 +64,9 @@ public:
                 case 11:
                     iplIO->displayBestBowlingAverageWithSR(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR_WITH_5w_AND_4w));
                     break;
+                case 12:
+                    iplIO->displayMaxWicketsWithAverage(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR_WITH_5w_AND_4w));
+                    break;
                 default :
                     flag = 1;
             }
