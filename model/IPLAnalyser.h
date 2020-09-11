@@ -11,7 +11,7 @@ class IPLAnalyser {
     vector<vector<string>> readCSVData(string fileName);
 
 public:
-    enum SortBy {AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE};
+    enum SortBy {AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY};
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
     vector<IPLMostRunsCSV> getBatsmanBy(vector<IPLMostRunsCSV> batsmanList, SortBy sortBy);
@@ -113,6 +113,11 @@ vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bow
                     break;
                 case SR :
                     if(bowlerList[i].strikeRate < bowlerList[j].strikeRate) {
+                        swap(bowlerList[i], bowlerList[j]);
+                    }
+                    break;
+                case ECONOMY :
+                    if(bowlerList[i].economy > bowlerList[j].economy) {
                         swap(bowlerList[i], bowlerList[j]);
                     }
                     break;

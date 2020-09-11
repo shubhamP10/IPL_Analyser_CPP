@@ -55,6 +55,9 @@ public:
                 case 8:
                     iplIO->displayTopStrikeRatesOfBowlers(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR));
                     break;
+                case 9:
+                    iplIO->displayBestBowlingEconomy(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.ECONOMY));
+                    break;
                 default :
                     flag = 1;
             }
