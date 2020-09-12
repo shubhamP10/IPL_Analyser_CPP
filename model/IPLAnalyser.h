@@ -12,9 +12,10 @@ class IPLAnalyser {
 
 public:
     enum SortBy {
-        AVG = 1, SR, SIX_AND_FOURS, SR_WITH_6sAND4s, 
+        AVERAGE = 1, STRIKE_RATE, SIX_AND_FOURS, SR_WITH_6sAND4s, 
         AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY,
-        SR_WITH_5w_AND_4w, BOWLING_AVG_WITH_SR, MAX_WICKETS_WITH_AVG, BATTING_BOWLING_AVERAGE
+        SR_WITH_5w_AND_4w, BOWLING_AVG_WITH_SR, MAX_WICKETS_WITH_AVG, 
+        BATTING_BOWLING_AVERAGE, MOST_RUNS_AND_WICKETS
         };
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
@@ -70,13 +71,13 @@ vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanL
     for(int i = 0; i < batsmanList.size() - 1; i++) {
         for(int j = i + 1; j < batsmanList.size(); j++) {
             switch(sortBy) {
-                case AVG :
+                case AVERAGE :
                     if(batsmanList[i].average < batsmanList[j].average) {
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;
                     
-                case SR : 
+                case STRIKE_RATE : 
                     if(batsmanList[i].strikeRate < batsmanList[j].strikeRate) {
                         swap(batsmanList[i], batsmanList[j]);
                     }
@@ -115,12 +116,12 @@ vector<IPLMostWicketsCSV> IPLAnalyser::getBowlerBy(vector<IPLMostWicketsCSV> bow
     for(int i = 0; i < bowlerList.size() - 1; i++) {
         for(int j = i + 1; j < bowlerList.size(); j++) {
             switch(sortBy) {
-                case AVG :
+                case AVERAGE :
                     if(bowlerList[i].average > bowlerList[j].average) {
                         swap(bowlerList[i], bowlerList[j]);
                     }
                     break;
-                case SR :
+                case STRIKE_RATE :
                     if(bowlerList[i].strikeRate > bowlerList[j].strikeRate) {
                         swap(bowlerList[i], bowlerList[j]);
                     }
@@ -182,6 +183,13 @@ vector<All_Rounder> IPLAnalyser::getAllRounderBy(vector<All_Rounder> allRounderL
                 case BATTING_BOWLING_AVERAGE :
                     if(allRounderList[i].battingAverage < allRounderList[j].battingAverage) {
                         if(allRounderList[i].bowlingAverage > allRounderList[j].bowlingAverage)
+                        swap(allRounderList[i], allRounderList[j]);
+                    }
+                    break;
+                
+                case MOST_RUNS_AND_WICKETS :
+                    if(allRounderList[i].runs < allRounderList[j].runs) {
+                        if(allRounderList[i].wickets < allRounderList[j].wickets)
                         swap(allRounderList[i], allRounderList[j]);
                     }
                     break;

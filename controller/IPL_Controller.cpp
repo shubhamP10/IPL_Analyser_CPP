@@ -35,10 +35,10 @@ public:
             int choice = iplIO->getUserChoice();
             switch(choice) {
                 case 1:
-                    iplIO->displayTopAvgBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVG));
+                    iplIO->displayTopAvgBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.AVERAGE));
                     break;
                 case 2:
-                    iplIO->displayTopSRBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SR));
+                    iplIO->displayTopSRBatsman(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.STRIKE_RATE));
                     break;
                 case 3:
                     iplIO->displayBatsmanWhoHitsMaxSixAndFours(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.SIX_AND_FOURS));
@@ -53,10 +53,10 @@ public:
                     iplIO->displayBatsmanWithMaxRunsAndAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.MAX_RUNS_WITH_AVERAGE));
                     break;
                 case 7:
-                    iplIO->displayTopBowlingAverages(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.AVG));
+                    iplIO->displayTopBowlingAverages(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.AVERAGE));
                     break;
                 case 8:
-                    iplIO->displayTopStrikeRatesOfBowlers(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.SR));
+                    iplIO->displayTopStrikeRatesOfBowlers(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.STRIKE_RATE));
                     break;
                 case 9:
                     iplIO->displayBestBowlingEconomy(iplAnalyser.getBowlerBy(bowlerList, iplAnalyser.ECONOMY));
@@ -72,6 +72,9 @@ public:
                     break;
                 case 13:
                     iplIO->displayBestBowlingAndBattingAverage(iplAnalyser.getAllRounderBy(allRounderList, iplAnalyser.BATTING_BOWLING_AVERAGE));
+                    break;
+                case 14:
+                    iplIO->displayBestAllRounders(iplAnalyser.getAllRounderBy(allRounderList, iplAnalyser.MOST_RUNS_AND_WICKETS));
                     break;
                 default :
                     flag = 1;
