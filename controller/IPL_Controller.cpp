@@ -76,6 +76,9 @@ public:
                 case 14:
                     iplIO->displayBestAllRounders(iplAnalyser.getAllRounderBy(allRounderList, iplAnalyser.MOST_RUNS_AND_WICKETS));
                     break;
+                case 15:
+                    iplIO->displayMostHunderedsWithAverage(iplAnalyser.getBatsmanBy(batsmanList, iplAnalyser.MOST_HUNDEREDS_WITH_AVERAGE));
+                    break;
                 default :
                     flag = 1;
             }

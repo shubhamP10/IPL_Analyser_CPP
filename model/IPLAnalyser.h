@@ -15,7 +15,7 @@ public:
         AVERAGE = 1, STRIKE_RATE, SIX_AND_FOURS, SR_WITH_6sAND4s, 
         AVERAGE_WITH_SR, MAX_RUNS_WITH_AVERAGE, ECONOMY,
         SR_WITH_5w_AND_4w, BOWLING_AVG_WITH_SR, MAX_WICKETS_WITH_AVG, 
-        BATTING_BOWLING_AVERAGE, MOST_RUNS_AND_WICKETS
+        BATTING_BOWLING_AVERAGE, MOST_RUNS_AND_WICKETS, MOST_HUNDEREDS_WITH_AVERAGE
         };
     vector<IPLMostRunsCSV> loadBatsmanData(string fileName);
     vector<IPLMostWicketsCSV> loadBowlerData(string fileName);
@@ -101,7 +101,12 @@ vector<IPLMostRunsCSV> IPLAnalyser::getBatsmanBy(vector<IPLMostRunsCSV> batsmanL
                     }
                     break;
                 case MAX_RUNS_WITH_AVERAGE : 
-                    if((batsmanList[i].runs < batsmanList[j].runs) && (batsmanList[i].average < batsmanList[j].average) ) {
+                    if((batsmanList[i].runs < batsmanList[j].runs) && (batsmanList[i].average < batsmanList[j].average)) {
+                        swap(batsmanList[i], batsmanList[j]);
+                    }
+                    break;
+                case MOST_HUNDEREDS_WITH_AVERAGE : 
+                    if((batsmanList[i].hundreds < batsmanList[j].hundreds) && (batsmanList[j].average < batsmanList[j].average)) {
                         swap(batsmanList[i], batsmanList[j]);
                     }
                     break;

@@ -25,6 +25,7 @@ class IPLAnalyserView {
         virtual void displayMaxWicketsWithAverage(vector<IPLMostWicketsCSV> topBowler) = 0;
         virtual void displayBestBowlingAndBattingAverage(vector<All_Rounder> allRounder) = 0;
         virtual void displayBestAllRounders(vector<All_Rounder> allRounder) = 0;
+        virtual void displayMostHunderedsWithAverage(vector<IPLMostRunsCSV> topBatsman) = 0;
 };
 
 class IPLAnalyserViewImpl : public IPLAnalyserView {
@@ -46,6 +47,7 @@ class IPLAnalyserViewImpl : public IPLAnalyserView {
         virtual void displayMaxWicketsWithAverage(vector<IPLMostWicketsCSV> topBowler);
         virtual void displayBestBowlingAndBattingAverage(vector<All_Rounder> allRounder);
         virtual void displayBestAllRounders(vector<All_Rounder> allRounder);
+        virtual void displayMostHunderedsWithAverage(vector<IPLMostRunsCSV> topBatsman);
 };
 
 void IPLAnalyserViewImpl::displayWelcomeMessage() {
@@ -60,7 +62,7 @@ int IPLAnalyserViewImpl::getUserChoice() {
         << "6. Maximum Runs With Best Average\n7. Top Bowling Averages\n8. Bowler's Batting Strike Rates" << endl 
         << "9. Best Bowling Economy\n10. 5 Wickets And 4 wickets" << endl
         <<"11. Best Bowling Average With SR\n12. Max Wickets With Best Average" << endl
-        <<"13. Batting And Bowling Average\n14. Top All-Rounders\nPress Other Key To Exit" << endl;
+        <<"13. Batting And Bowling Average\n14. Top All-Rounders\n15. Most Hundereds\nPress Other Key To Exit" << endl;
     cin >> choice;
     return choice;
 }
@@ -228,6 +230,16 @@ void IPLAnalyserViewImpl::displayBestAllRounders(vector<All_Rounder> allRounder)
             << allRounder[i].runs << endl << "Wickets: " << allRounder[i].wickets << endl;
             count++;
         }
+    }
+    cout << "=======================================================\n";
+}
+
+void IPLAnalyserViewImpl::displayMostHunderedsWithAverage(vector<IPLMostRunsCSV> topBatsman) {
+    cout << "=======================================================";
+    cout << "\nBatsman Who Hits Most Hundereds With Best Average in IPL 2019" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout << "\nName: " << topBatsman[i].playerName << endl << "Hundereds : " << topBatsman[i].hundreds << endl
+                << "Average: " << topBatsman[i].average << endl;
     }
     cout << "=======================================================\n";
 }
